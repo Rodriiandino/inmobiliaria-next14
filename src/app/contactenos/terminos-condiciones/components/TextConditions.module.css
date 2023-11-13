@@ -1,0 +1,25 @@
+.conditions {
+  height: calc(100vh - 100px);
+  padding: 0 2rem;
+  margin-top: 100px;
+}
+
+.conditions > * {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.conditions h1 {
+  font-size: var(--step-4);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.conditions p {
+  font-size: var(--step--1);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.5;
+}

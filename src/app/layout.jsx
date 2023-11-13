@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import { inter } from '@/styles/font'
 
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
@@ -13,7 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body>
+      <body className={`${inter.className}`}>
         <Header />
         {children}
         <Footer />

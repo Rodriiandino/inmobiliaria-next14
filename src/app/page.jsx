@@ -3,7 +3,7 @@ import TopPropertyPicks from './components/TopPropertyPicks'
 import Priority from './components/Priority'
 import Contact from './components/Contact'
 
-export default function Home() {
+export default function HomePage() {
   return (
     <main>
       <Welcome />

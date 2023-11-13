@@ -39,9 +39,9 @@
   --font-mono: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
   --background: #181c21;
-  --background-transparent: #72c1cbab;
+  --background-transparent: #181c21ab;
 
-  --background-secondary: #7dc5cf;
+  --background-secondary: #1e2328;
 }
 
 :root {

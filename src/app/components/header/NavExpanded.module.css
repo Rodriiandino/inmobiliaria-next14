@@ -27,7 +27,7 @@
   display: none;
   top: 60px;
   right: 70px;
-  background-color: var(--white-transparent-ab);
+  background-color: var(--white-transparent);
   border-radius: 10px 0 10px 10px;
   padding: 1rem;
   animation: slideDown 0.3s ease;
