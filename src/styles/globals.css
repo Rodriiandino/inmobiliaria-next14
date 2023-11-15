@@ -34,9 +34,8 @@
     var(--white-transparent) 95%
   );
 
-  --max-width: 1400px;
+  --max-width: 1250px;
   --border-radius: 12px;
-  --font-mono: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
   --background: #181c21;
   --background-transparent: #181c21ab;
@@ -174,12 +173,4 @@ main {
   height: 100%;
   display: flex;
   flex-direction: column;
-}
-
-.logo {
-  fill: var(--white);
-}
-
-.logoTitle {
-  fill: var(--white);
 }

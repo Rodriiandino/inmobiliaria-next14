@@ -1,7 +1,7 @@
 import style from './Welcome.module.css'
-import InfoUbicacion from './InfoRedes/InfoUbicacion'
-import InfoPhone from './InfoRedes/InfoPhone'
-import InfoInstagram from './InfoRedes/InfoInstagram'
+import InfoUbicacion from './infoRedes/InfoUbicacion'
+import InfoPhone from './infoRedes/InfoPhone'
+import InfoInstagram from './infoRedes/InfoInstagram'
 
 export default function Welcome() {
   return (
@@ -14,7 +14,9 @@ export default function Welcome() {
           <h2 className={style.title__name}>Andino Rodrigo Agustín</h2>
         </div>
 
-        <div className={style.logo}></div>
+        <div className={style.container__logo}>
+          <div className={style.logo}></div>
+        </div>
 
         <footer className={style.footer}>
           <div className={style.footer__container}>

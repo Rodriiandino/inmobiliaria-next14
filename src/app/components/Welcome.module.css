@@ -62,9 +62,17 @@
   text-transform: uppercase;
 }
 
-.logo {
-  height: 100%;
+.container__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   grid-area: logo;
+}
+
+.logo {
+  width: 100%;
+  max-width: 350px;
+  height: 100%;
   background-image: url('/logo/logoTitle.svg');
   background-repeat: no-repeat;
   background-size: contain;

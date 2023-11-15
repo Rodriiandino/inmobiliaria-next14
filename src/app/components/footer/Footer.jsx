@@ -1,7 +1,7 @@
 import styles from './Footer.module.css'
-import InfoUbicacion from '../InfoRedes/InfoUbicacion'
-import InfoPhone from '../InfoRedes/InfoPhone'
-import InfoInstagram from '../InfoRedes/InfoInstagram'
+import InfoUbicacion from '../infoRedes/InfoUbicacion'
+import InfoPhone from '../infoRedes/InfoPhone'
+import InfoInstagram from '../infoRedes/InfoInstagram'
 import Image from 'next/image'
 
 export default function Footer() {
