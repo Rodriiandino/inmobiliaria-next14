@@ -1,7 +1,12 @@
 import { NextResponse } from 'next/server'
 import { pool } from '@/config/db'
 
-export const getFromDatabase = async (query, tableName) => {
+export const getFromDatabase = async (
+  query,
+  tableName,
+  page = 1,
+  limit = 10
+) => {
   try {
     const [rows] = await pool.query(query)
     const [count] = await pool.query(
@@ -11,6 +16,8 @@ export const getFromDatabase = async (query, tableName) => {
 
     return NextResponse.json({
       count: totalCount,
+      page: page,
+      limit: limit,
       results: rows
     })
   } catch (error) {
