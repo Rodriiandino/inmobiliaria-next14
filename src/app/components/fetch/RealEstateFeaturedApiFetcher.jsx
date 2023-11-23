@@ -1,18 +1,17 @@
 import Card from '../cards/Card'
+import fetchApi from './FetcheApi'
 import RealEstateFeaturedFilter from './realEstateFeaturedFilter'
 
-export default async function RealEstateApiFetcher({
-  category,
-  showFeaturedOnly
-}) {
-  const res = await fetch('http://localhost:3000/api/inmobiliarias')
-  const { results } = await res.json()
-  const realEstate = results
+export default async function RealEstateApiFetcher({ category }) {
+  const feactured = {
+    featured: 1
+  }
+
+  const realEstate = await fetchApi({ searchParams: feactured })
 
   const filteredProperties = RealEstateFeaturedFilter({
-    realEstate: realEstate,
-    category,
-    showFeaturedOnly: showFeaturedOnly
+    realEstate,
+    category
   })
 
   return (

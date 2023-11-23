@@ -1,0 +1,105 @@
+.filter {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+}
+
+.filter__sticky {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+  padding: 1rem;
+}
+
+.filter__container {
+  margin-bottom: 1.5rem;
+}
+
+.filter__container details summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.filter__container h3 {
+  font-size: var(--step-1);
+  color: var(--yellow-sage);
+}
+
+.details__filter {
+  display: flex;
+  flex-direction: column;
+  padding: 0.2rem 0 0;
+}
+
+.details__filter label {
+  font-size: var(--step-0);
+  color: var(--yellow);
+}
+
+.details__filter h4 {
+  font-size: var(--step--1);
+  font-weight: 400;
+  color: var(--white);
+  padding-top: 0.5rem;
+}
+
+.details__filter input[type='checkbox'],
+.details__filter span {
+  margin-right: 0.5rem;
+}
+
+.details__filter input[type='checkbox'] {
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid var(--gray);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.details__filter input[type='number'] {
+  width: 50%;
+  padding: 0.2rem;
+  border: 1px solid var(--gray);
+  border-radius: 5px;
+}
+
+.details__filter input[type='number']:focus {
+  outline: none;
+  border: 1px solid var(--primary);
+}
+
+.filter__area {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 900px) {
+  .filter__sticky {
+    top: 80px;
+  }
+}
+
+@media (max-width: 670px) {
+  .filter {
+    width: 100%;
+  }
+
+  .filter__sticky {
+    position: relative;
+    top: 0;
+    /* flex-direction: row; */
+    justify-content: space-between;
+    padding: 1rem 0 0 0;
+  }
+
+  .filter__container {
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+
+  .filter__container h3 {
+    text-align: center;
+  }
+}

@@ -1,6 +1,6 @@
 import styles from './TopPropertyPicks.module.css'
 import categories from '../utils/enum-category'
-import RealEstateApiFetcher from './fetch/RealEstateApiFetcher'
+import RealEstateApiFetcher from './fetch/RealEstateFeaturedApiFetcher'
 
 export default function TopPropertyPicks() {
   return (
@@ -16,28 +16,19 @@ export default function TopPropertyPicks() {
           <section className={styles.bestChoice__category}>
             <h4 className={styles.bestChoice__subtitle}>Casas</h4>
             <div className={styles.card__container}>
-              <RealEstateApiFetcher
-                category={categories.CASA}
-                showFeaturedOnly={true}
-              />
+              <RealEstateApiFetcher category={categories.CASA} />
             </div>
           </section>
           <section className={styles.bestChoice__category}>
             <h4 className={styles.bestChoice__subtitle}>Terrenos</h4>
             <div className={styles.card__container}>
-              <RealEstateApiFetcher
-                category={categories.TERRENO}
-                showFeaturedOnly={true}
-              />
+              <RealEstateApiFetcher category={categories.TERRENO} />
             </div>
           </section>
           <section className={styles.bestChoice__category}>
             <h4 className={styles.bestChoice__subtitle}>Departamentos</h4>
             <div className={styles.card__container}>
-              <RealEstateApiFetcher
-                category={categories.DEPARTAMENTO}
-                showFeaturedOnly={true}
-              />
+              <RealEstateApiFetcher category={categories.DEPARTAMENTO} />
             </div>
           </section>
         </div>

@@ -1,7 +1,6 @@
 export default function RealEstateFeaturedFilter({
   realEstate,
-  category = 'ALL',
-  showFeaturedOnly = false
+  category = 'ALL'
 }) {
   if (category === 'ALL' && !showFeaturedOnly) {
     return realEstate
@@ -9,8 +8,7 @@ export default function RealEstateFeaturedFilter({
     return realEstate.filter(realEstate => {
       const isMatchingCategory =
         category === 'ALL' || realEstate.categoria === category
-      const isFeatured = showFeaturedOnly ? realEstate.destacado : true
-      return isMatchingCategory && isFeatured
+      return isMatchingCategory
     })
   }
 }

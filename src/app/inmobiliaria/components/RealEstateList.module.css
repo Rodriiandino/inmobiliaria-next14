@@ -1,5 +1,4 @@
 .products {
-  background: var(--linear-gradient-bottom-90);
   min-height: calc(100vh - 100px - 25vh);
   padding: 0 2rem;
 }
