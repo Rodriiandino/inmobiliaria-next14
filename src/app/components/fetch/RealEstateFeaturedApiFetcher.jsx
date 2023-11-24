@@ -7,10 +7,10 @@ export default async function RealEstateApiFetcher({ category }) {
     featured: 1
   }
 
-  const realEstate = await fetchApi({ searchParams: feactured })
+  const { results } = await fetchApi({ searchParams: feactured })
 
   const filteredProperties = RealEstateFeaturedFilter({
-    realEstate,
+    realEstate: results,
     category
   })
 

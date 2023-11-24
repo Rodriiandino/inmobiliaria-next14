@@ -1,6 +1,6 @@
 import Filter from './Filter'
 import styles from './RealEstateList.module.css'
-import ListProperties from './fetch/ListProperties'
+import ListProperties from './ListProperties'
 import { FilterLogicProvider } from '../contexts/filterLogicContext'
 import Pagination from './Pagination'
 
@@ -13,10 +13,10 @@ export default function RealEstateList() {
           <div className={styles.products__list}>
             <ListProperties />
           </div>
-          <footer>
-            <Pagination />
-          </footer>
         </article>
+        <footer>
+          <Pagination />
+        </footer>
       </section>
     </FilterLogicProvider>
   )

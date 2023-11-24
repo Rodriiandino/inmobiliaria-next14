@@ -7,7 +7,7 @@ export default async function fetchApi({ searchParams } = {}) {
 
   try {
     const res = await fetch(url)
-    const { results } = await res.json()
+    const results = await res.json()
     return results
   } catch (error) {
     console.error('Error fetching properties:', error)

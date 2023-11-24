@@ -12,12 +12,15 @@ export const getFromDatabase = async (
     const [count] = await pool.query(
       `SELECT COUNT(*) AS total FROM ${tableName}`
     )
+
     const totalCount = count[0].total
+    const totalPages = Math.ceil(totalCount / limit)
 
     return NextResponse.json({
       count: totalCount,
       page: page,
       limit: limit,
+      totalPages: totalPages,
       results: rows
     })
   } catch (error) {
