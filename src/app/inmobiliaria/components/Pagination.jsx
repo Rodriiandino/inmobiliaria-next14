@@ -1,10 +1,11 @@
 'use client'
 
 import { useRealEstate } from './hook/useRealEstate'
-import Card from '@/app/components/cards/Card'
+import { useApiData } from '../contexts/apiDataContext'
 
 export default function Pagination() {
-  const { nextPage, prevPage, page, enable, realEstate } = useRealEstate()
+  const { nextPage, prevPage, enable } = useRealEstate()
+  const { apiData } = useApiData()
 
   return (
     <div className='btn__container'>
@@ -12,7 +13,7 @@ export default function Pagination() {
         Pagina Anterior
       </button>
 
-      <h3>{page} </h3>
+      <h3>{apiData.page} </h3>
 
       <button onClick={nextPage} disabled={enable}>
         Siguiente Pagina

@@ -1,21 +1,21 @@
 'use client'
-import { useFilterLogic } from '../contexts/filterLogicContext'
+import { useFilter } from '../contexts/filterContext'
 import styles from './Filter.module.css'
 
 export default function Filter() {
-  const { filterLogic, setFilterLogic } = useFilterLogic()
+  const { filter, setFilter } = useFilter()
 
   const handleChange = e => {
     const { name, value, checked } = e.target
 
     if (name === 'categories') {
       if (checked) {
-        setFilterLogic(prevFilter => ({
+        setFilter(prevFilter => ({
           ...prevFilter,
           categories: [...prevFilter.categories, value]
         }))
       } else {
-        setFilterLogic(prevFilter => ({
+        setFilter(prevFilter => ({
           ...prevFilter,
           categories: prevFilter.categories.filter(
             category => category !== value
@@ -23,7 +23,7 @@ export default function Filter() {
         }))
       }
     } else {
-      setFilterLogic(prevFilter => ({
+      setFilter(prevFilter => ({
         ...prevFilter,
         [name]: value
       }))
@@ -47,7 +47,7 @@ export default function Filter() {
                     id='casa'
                     value='Casa'
                     onChange={handleChange}
-                    checked={filterLogic.categories.includes('Casa')}
+                    checked={filter.categories.includes('Casa')}
                   />
                   <label htmlFor='casa'>Casa</label>
                 </li>
@@ -58,7 +58,7 @@ export default function Filter() {
                     id='departamento'
                     value='Departamento'
                     onChange={handleChange}
-                    checked={filterLogic.categories.includes('Departamento')}
+                    checked={filter.categories.includes('Departamento')}
                   />
                   <label htmlFor='departamento'>Departamento</label>
                 </li>
@@ -69,7 +69,7 @@ export default function Filter() {
                     id='terreno'
                     value='Terreno'
                     onChange={handleChange}
-                    checked={filterLogic.categories.includes('Terreno')}
+                    checked={filter.categories.includes('Terreno')}
                   />
                   <label htmlFor='terreno'>Terreno</label>
                 </li>
@@ -90,7 +90,7 @@ export default function Filter() {
                   name='priceMin'
                   placeholder='Desde'
                   id='filterPriceFrom'
-                  value={filterLogic.priceMin}
+                  value={filter.priceMin}
                   onChange={handleChange}
                 />
               </label>
@@ -101,7 +101,7 @@ export default function Filter() {
                   name='priceMax'
                   placeholder='Hacia'
                   id='filterPriceTo'
-                  value={filterLogic.priceMax}
+                  value={filter.priceMax}
                   onChange={handleChange}
                 />
               </label>
@@ -216,7 +216,7 @@ export default function Filter() {
                       name='areaMin'
                       id='FilterAreaFrom'
                       placeholder='Desde'
-                      value={filterLogic.areaMin}
+                      value={filter.areaMin}
                       onChange={handleChange}
                     />
                   </label>
@@ -227,7 +227,7 @@ export default function Filter() {
                       name='areaMax'
                       id='FilterAreaTo'
                       placeholder='Hacia'
-                      value={filterLogic.areaMax}
+                      value={filter.areaMax}
                       onChange={handleChange}
                     />
                   </label>

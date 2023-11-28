@@ -1,4 +1,4 @@
-export default function filteredProperties(Properties, filter) {
+export function filteredProperties(Properties, filter) {
   const { categories, priceMin, priceMax, rooms, bathrooms, areaMin, areaMax } =
     filter
 

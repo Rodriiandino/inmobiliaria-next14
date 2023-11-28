@@ -1,57 +1,57 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
+import { useApiData } from '../../contexts/apiDataContext'
 import fetchApi from '@/app/components/fetch/FetcheApi'
 
 export function useRealEstate() {
-  const [realEstate, setRealEstate] = useState([])
-  const [page, setPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(0)
-  const [totalItems, setTotalItems] = useState(0)
-  const [limitItems, setLimitItems] = useState(1)
-  const [enable, setEnable] = useState(true)
+  const { apiData, setApiData } = useApiData()
 
   const fetchRealEstate = useCallback(async () => {
-    const limit = {
-      page: page,
-      limit: limitItems
+    const filter = {
+      page: apiData.page,
+      limit: apiData.limit
     }
 
     try {
-      setEnable(false)
-      const response = await fetchApi({ searchParams: limit })
-      setRealEstate(response.results)
-      setTotalPages(response.totalPages)
-      setTotalItems(response.count)
+      const response = await fetchApi({ searchParams: filter })
+
+      setApiData(prevApiData => ({
+        ...prevApiData,
+        count: response.count,
+        totalPages: response.totalPages,
+        results: response.results
+      }))
     } catch (error) {
-      setEnable(true)
       console.error('Error fetching properties:', error)
     }
-  }, [page, limitItems])
+  }, [apiData.page, apiData.limit, setApiData])
 
   useEffect(() => {
     fetchRealEstate()
-  }, [page, fetchRealEstate])
+  }, [fetchRealEstate])
 
   const nextPage = () => {
-    if (page === totalPages) return
-    setPage(page + 1)
+    if (apiData.page < apiData.totalPages) {
+      setApiData(prevApiData => ({
+        ...prevApiData,
+        page: prevApiData.page + 1
+      }))
+    }
   }
 
   const prevPage = () => {
-    if (page === 1) return
-    setPage(page - 1)
+    if (apiData.page > 1) {
+      setApiData(prevApiData => ({
+        ...prevApiData,
+        page: prevApiData.page - 1
+      }))
+    }
   }
 
   return {
-    fetchRealEstate,
-    realEstate,
     nextPage,
     prevPage,
-    page,
-    totalPages,
-    totalItems,
-    setLimitItems,
-    enable
+    enable: !apiData.count
   }
 }
