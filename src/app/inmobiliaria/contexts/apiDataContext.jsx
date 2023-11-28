@@ -8,7 +8,7 @@ export const ApiDataProvider = ({ children }) => {
   const [apiData, setApiData] = useState({
     count: 0,
     page: 1,
-    limit: 2,
+    limit: 1,
     totalPages: 0,
     results: []
   })

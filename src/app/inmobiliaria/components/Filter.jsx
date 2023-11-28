@@ -1,9 +1,11 @@
 'use client'
 import { useFilter } from '../contexts/filterContext'
+import { useRealEstate } from './hook/useRealEstate'
 import styles from './Filter.module.css'
 
 export default function Filter() {
   const { filter, setFilter } = useFilter()
+  const { fetchRealEstate } = useRealEstate()
 
   const handleChange = e => {
     const { name, value, checked } = e.target
@@ -30,11 +32,16 @@ export default function Filter() {
     }
   }
 
+  const handleSubmit = e => {
+    e.preventDefault()
+    fetchRealEstate()
+  }
+
   return (
     <aside className={styles.filter}>
       <div className={styles.filter__sticky}>
         <div className={styles.filter__container}>
-          <details>
+          <details open>
             <summary>
               <h3>Categoría</h3>
             </summary>
@@ -78,7 +85,7 @@ export default function Filter() {
           </details>
         </div>
         <div className={styles.filter__container}>
-          <details>
+          <details open>
             <summary>
               <h3>Precio</h3>
             </summary>
@@ -109,7 +116,7 @@ export default function Filter() {
           </details>
         </div>
         <div className={styles.filter__container}>
-          <details>
+          <details open>
             <summary>
               <h3>Más Filtros</h3>
             </summary>
@@ -236,6 +243,7 @@ export default function Filter() {
             </div>
           </details>
         </div>
+        <button onClick={handleSubmit}>Aplicar Filtros</button>
       </div>
     </aside>
   )

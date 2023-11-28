@@ -89,7 +89,6 @@
   .filter__sticky {
     position: relative;
     top: 0;
-    /* flex-direction: row; */
     justify-content: space-between;
     padding: 1rem 0 0 0;
   }
@@ -97,9 +96,5 @@
   .filter__container {
     margin-bottom: 0.5rem;
     width: 100%;
-  }
-
-  .filter__container h3 {
-    text-align: center;
   }
 }

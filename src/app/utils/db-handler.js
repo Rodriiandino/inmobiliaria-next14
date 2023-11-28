@@ -5,15 +5,35 @@ export const getFromDatabase = async (
   query,
   tableName,
   page = 1,
-  limit = 10
+  limit = 10,
+  filterConditions = [],
+  queryParams = []
 ) => {
   try {
-    const [rows] = await pool.query(query)
-    const [count] = await pool.query(
-      `SELECT COUNT(*) AS total FROM ${tableName}`
-    )
+    const [rows] = await pool.query(query, queryParams)
 
-    const totalCount = count[0].total
+    let countQuery = `SELECT COUNT(*) AS total FROM ${tableName}`
+    let countQueryParams = []
+
+    if (filterConditions.length > 0) {
+      countQuery += ' WHERE '
+      filterConditions.forEach((condition, index) => {
+        if (index > 0) {
+          countQuery += ' AND '
+        }
+        countQuery += condition
+      })
+      countQueryParams = [...queryParams]
+    }
+
+    console.log(countQuery)
+    console.log(queryParams)
+
+    const [count] = await pool.query(countQuery, countQueryParams)
+
+    console.log(count[0].total)
+
+    const totalCount = count[0]?.total
     const totalPages = Math.ceil(totalCount / limit)
 
     return NextResponse.json({
@@ -24,7 +44,6 @@ export const getFromDatabase = async (
       results: rows
     })
   } catch (error) {
-    console.error('Error fetching data from database:', error)
     return NextResponse.json(
       { error: 'An error occurred while fetching data' },
       500
@@ -39,7 +58,6 @@ export const getFromDatabaseById = async query => {
       results: rows
     })
   } catch (error) {
-    console.error('Error fetching data from database:', error)
     return NextResponse.json(
       { error: 'An error occurred while fetching data' },
       500

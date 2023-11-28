@@ -2,19 +2,35 @@
 
 import { useCallback, useEffect } from 'react'
 import { useApiData } from '../../contexts/apiDataContext'
+import { useFilter } from '../../contexts/filterContext'
 import fetchApi from '@/app/components/fetch/FetcheApi'
 
 export function useRealEstate() {
   const { apiData, setApiData } = useApiData()
+  const { filter } = useFilter()
 
   const fetchRealEstate = useCallback(async () => {
-    const filter = {
-      page: apiData.page,
-      limit: apiData.limit
-    }
+    const queryParams = Object.fromEntries(
+      Object.entries({
+        page: apiData.page,
+        limit: apiData.limit,
+        categories: filter.categories,
+        priceMin: filter.priceMin,
+        priceMax: filter.priceMax,
+        rooms: filter.rooms,
+        bathrooms: filter.bathrooms,
+        areaMin: filter.areaMin,
+        areaMax: filter.areaMax
+      }).filter(([key, value]) => {
+        if (key === 'categories') {
+          return Array.isArray(value) ? value.length > 0 : value !== ''
+        }
+        return value !== ''
+      })
+    )
 
     try {
-      const response = await fetchApi({ searchParams: filter })
+      const response = await fetchApi({ searchParams: queryParams })
 
       setApiData(prevApiData => ({
         ...prevApiData,
@@ -25,7 +41,7 @@ export function useRealEstate() {
     } catch (error) {
       console.error('Error fetching properties:', error)
     }
-  }, [apiData.page, apiData.limit, setApiData])
+  }, [apiData.page, apiData.limit, filter, setApiData])
 
   useEffect(() => {
     fetchRealEstate()
@@ -52,6 +68,7 @@ export function useRealEstate() {
   return {
     nextPage,
     prevPage,
-    enable: !apiData.count
+    enable: !apiData.count,
+    fetchRealEstate
   }
 }
