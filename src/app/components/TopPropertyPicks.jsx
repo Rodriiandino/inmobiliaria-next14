@@ -1,6 +1,8 @@
 import styles from './TopPropertyPicks.module.css'
 import categories from '../utils/enum-category'
 import RealEstateApiFetcher from './fetch/RealEstateFeaturedApiFetcher'
+import { Suspense } from 'react'
+import Loading from '../loading'
 
 export default function TopPropertyPicks() {
   return (
@@ -16,19 +18,25 @@ export default function TopPropertyPicks() {
           <section className={styles.bestChoice__category}>
             <h4 className={styles.bestChoice__subtitle}>Casas</h4>
             <div className={styles.card__container}>
-              <RealEstateApiFetcher category={categories.CASA} />
+              <Suspense fallback={<Loading />}>
+                <RealEstateApiFetcher category={categories.CASA} />
+              </Suspense>
             </div>
           </section>
           <section className={styles.bestChoice__category}>
             <h4 className={styles.bestChoice__subtitle}>Terrenos</h4>
             <div className={styles.card__container}>
-              <RealEstateApiFetcher category={categories.TERRENO} />
+              <Suspense fallback={<Loading />}>
+                <RealEstateApiFetcher category={categories.TERRENO} />
+              </Suspense>
             </div>
           </section>
           <section className={styles.bestChoice__category}>
             <h4 className={styles.bestChoice__subtitle}>Departamentos</h4>
             <div className={styles.card__container}>
-              <RealEstateApiFetcher category={categories.DEPARTAMENTO} />
+              <Suspense fallback={<Loading />}>
+                <RealEstateApiFetcher category={categories.DEPARTAMENTO} />
+              </Suspense>
             </div>
           </section>
         </div>

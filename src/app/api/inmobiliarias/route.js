@@ -40,11 +40,11 @@ export const GET = async req => {
   }
 
   if (reqParams.has('rooms')) {
-    filterConditions.push(`pc.num_habitaciones = ?`)
+    filterConditions.push(`pc.num_habitaciones >= ?`)
   }
 
   if (reqParams.has('bathrooms')) {
-    filterConditions.push(`pc.num_banos = ?`)
+    filterConditions.push(`pc.num_banos >= ?`)
   }
 
   if (reqParams.has('areaMin')) {

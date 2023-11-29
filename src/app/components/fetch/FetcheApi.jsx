@@ -6,7 +6,14 @@ export default async function fetchApi({ searchParams } = {}) {
   if (params.toString().length > 0) url += `?${params.toString()}`
 
   try {
-    const res = await fetch(url)
+    await new Promise(resolve => setTimeout(resolve, 2000))
+
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
     const results = await res.json()
     return results
   } catch (error) {

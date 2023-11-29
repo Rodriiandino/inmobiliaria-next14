@@ -12,26 +12,17 @@ export const getFromDatabase = async (
   try {
     const [rows] = await pool.query(query, queryParams)
 
-    let countQuery = `SELECT COUNT(*) AS total FROM ${tableName}`
-    let countQueryParams = []
+    let countQuery = `SELECT COUNT(*) AS total FROM ${tableName} p
+    JOIN Categorias c ON p.categoria_id = c.id
+    JOIN Ubicaciones u ON p.ubicacion_id = u.id
+    JOIN Propiedad_Caracteristicas pc ON p.propiedad_caracteristicas_id = pc.id`
 
     if (filterConditions.length > 0) {
       countQuery += ' WHERE '
-      filterConditions.forEach((condition, index) => {
-        if (index > 0) {
-          countQuery += ' AND '
-        }
-        countQuery += condition
-      })
-      countQueryParams = [...queryParams]
+      countQuery += filterConditions.join(' AND ')
     }
 
-    console.log(countQuery)
-    console.log(queryParams)
-
-    const [count] = await pool.query(countQuery, countQueryParams)
-
-    console.log(count[0].total)
+    const [count] = await pool.query(countQuery, queryParams)
 
     const totalCount = count[0]?.total
     const totalPages = Math.ceil(totalCount / limit)

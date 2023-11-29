@@ -64,7 +64,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: 0.8rem;
   transition: all 0.3s ease-in-out;
 }
 
@@ -75,7 +75,7 @@
 .props h5 {
   display: block;
   font-weight: 700;
-  font-size: var(--step-0);
+  font-size: var(--step--1);
   color: var(--yellow);
   white-space: nowrap;
 }
@@ -84,6 +84,7 @@
   font-size: var(--step--1);
   color: var(--white);
   text-align: center;
+  text-wrap: balance;
 }
 
 .footer {
