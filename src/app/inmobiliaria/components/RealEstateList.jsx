@@ -9,7 +9,6 @@ import Loading from '../loading'
 export default async function RealEstateList({ searchParams }) {
   const apiResults = await RealEstateApiFetcher({ params: searchParams })
 
-  const realEstate = apiResults.results
   const totalPages = apiResults.totalPages
   const page = apiResults.page
 
@@ -23,8 +22,8 @@ export default async function RealEstateList({ searchParams }) {
             totalPages={totalPages}
           />
           <div className={styles.products__list}>
-            <Suspense key={page + searchParams} fallback={<Loading />}>
-              <ListProperties realEstate={realEstate} />
+            <Suspense key={page + totalPages} fallback={<Loading />}>
+              <ListProperties searchParams={searchParams} />
             </Suspense>
           </div>
         </article>
