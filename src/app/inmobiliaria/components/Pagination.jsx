@@ -1,21 +1,40 @@
 'use client'
 
-import { useRealEstate } from './hook/useRealEstate'
-import { useApiData } from '../contexts/apiDataContext'
+import { useSearchParams, usePathname, useRouter } from 'next/navigation'
 
-export default function Pagination() {
-  const { nextPage, prevPage, enable } = useRealEstate()
-  const { apiData } = useApiData()
+export default function Pagination({ page, totalPages }) {
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const { replace } = useRouter()
+
+  const params = new URLSearchParams(searchParams)
+  const nextPage = () => {
+    if (page < totalPages) {
+      params.set('page', page + 1)
+      replace(`${pathname}?${params.toString()}`)
+    }
+  }
+
+  const prevPage = () => {
+    if (page > 1) {
+      params.set('page', page - 1)
+      replace(`${pathname}?${params.toString()}`)
+    }
+  }
+
+  const disablePrev = page === 1
+
+  const disableNext = page === totalPages
 
   return (
     <div className='btn__container'>
-      <button onClick={prevPage} disabled={enable}>
+      <button onClick={prevPage} disabled={disablePrev}>
         Pagina Anterior
       </button>
 
-      <h3>{apiData.page} </h3>
+      <h3>{page} </h3>
 
-      <button onClick={nextPage} disabled={enable}>
+      <button onClick={nextPage} disabled={disableNext}>
         Siguiente Pagina
       </button>
     </div>

@@ -1,11 +1,16 @@
 'use client'
 import { useFilter } from '../contexts/filterContext'
-import { useRealEstate } from './hook/useRealEstate'
+import { useSearchParams, usePathname, useRouter } from 'next/navigation'
+import { useRealEstateFilter } from './hook/useRealEstateFilter'
+import Pagination from './Pagination'
 import styles from './Filter.module.css'
 
-export default function Filter() {
+export default function Filter({ page, totalPages }) {
   const { filter, setFilter } = useFilter()
-  const { fetchRealEstate } = useRealEstate()
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+  const { replace } = useRouter()
+  const { queryParams } = useRealEstateFilter()
 
   const handleChange = e => {
     const { name, value, checked } = e.target
@@ -34,7 +39,28 @@ export default function Filter() {
 
   const handleSubmit = e => {
     e.preventDefault()
-    fetchRealEstate()
+
+    const params = new URLSearchParams(searchParams)
+
+    for (const key of params.keys()) {
+      params.delete(key)
+    }
+
+    if (Object.keys(queryParams).length === 0) {
+      replace(pathname)
+      return
+    }
+
+    for (const [key, value] of Object.entries(queryParams)) {
+      if (params.has('page')) {
+        params.set('page', 1)
+      }
+      params.set(key, value)
+    }
+
+    const url = `${pathname}?${params.toString()}`
+
+    replace(url)
   }
 
   return (
@@ -127,20 +153,11 @@ export default function Filter() {
                   <input
                     type='radio'
                     name='bathrooms'
-                    id='bathrooms-0'
-                    value='0'
-                    onChange={handleChange}
-                  />
-                  <label htmlFor='bathrooms-0'>0</label>
-
-                  <input
-                    type='radio'
-                    name='bathrooms'
                     id='bathrooms-1'
                     value='1'
                     onChange={handleChange}
                   />
-                  <label htmlFor='bathrooms-1'>1</label>
+                  <label htmlFor='bathrooms-1'>+1</label>
                   <input
                     type='radio'
                     name='bathrooms'
@@ -170,14 +187,6 @@ export default function Filter() {
               <div>
                 <h4>Habitaciones</h4>
                 <div>
-                  <input
-                    type='radio'
-                    name='rooms'
-                    id='rooms-0'
-                    value='0'
-                    onChange={handleChange}
-                  />
-                  <label htmlFor='rooms-0'>0</label>
                   <input
                     type='radio'
                     name='rooms'
@@ -244,6 +253,7 @@ export default function Filter() {
           </details>
         </div>
         <button onClick={handleSubmit}>Aplicar Filtros</button>
+        <Pagination page={page} totalPages={totalPages} />
       </div>
     </aside>
   )
