@@ -252,7 +252,9 @@ export default function Filter({ page, totalPages }) {
             </div>
           </details>
         </div>
-        <button onClick={handleSubmit}>Aplicar Filtros</button>
+        <button className={styles.btn} onClick={handleSubmit}>
+          Aplicar Filtros
+        </button>
         <Pagination page={page} totalPages={totalPages} />
       </div>
     </aside>

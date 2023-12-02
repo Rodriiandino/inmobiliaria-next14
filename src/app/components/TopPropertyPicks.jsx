@@ -2,7 +2,7 @@ import styles from './TopPropertyPicks.module.css'
 import categories from '../utils/enum-category'
 import RealEstateFeaturedApiFetcher from './fetch/RealEstateFeaturedApiFetcher'
 import { Suspense } from 'react'
-import Loading from '../loading'
+import Loading from './loading'
 
 export default function TopPropertyPicks() {
   return (

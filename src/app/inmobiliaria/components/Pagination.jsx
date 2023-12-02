@@ -1,6 +1,7 @@
 'use client'
 
 import { useSearchParams, usePathname, useRouter } from 'next/navigation'
+import styles from './Paginacion.module.css'
 
 export default function Pagination({ page = 0, totalPages = 0 }) {
   const pathname = usePathname()
@@ -27,15 +28,15 @@ export default function Pagination({ page = 0, totalPages = 0 }) {
   const disableNext = page === totalPages
 
   return (
-    <div className='btn__container'>
-      <button onClick={prevPage} disabled={disablePrev}>
-        Pagina Anterior
+    <div className={styles.btn__container}>
+      <button onClick={prevPage} disabled={disablePrev} className={styles.btn}>
+        Anterior
       </button>
 
-      <h3>{page} </h3>
+      <h3 className={styles.number}>{page}</h3>
 
-      <button onClick={nextPage} disabled={disableNext}>
-        Siguiente Pagina
+      <button onClick={nextPage} disabled={disableNext} className={styles.btn}>
+        Siguiente
       </button>
     </div>
   )

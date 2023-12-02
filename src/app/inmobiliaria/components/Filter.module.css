@@ -75,6 +75,22 @@
   flex-direction: column;
 }
 
+.btn {
+  background-color: var(--btn);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--white);
+}
+
+.btn:hover {
+  background-color: var(--btn-hover);
+}
+
 @media (max-width: 900px) {
   .filter__sticky {
     top: 80px;
