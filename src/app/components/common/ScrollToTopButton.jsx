@@ -24,6 +24,7 @@ export default function ScrollToTopButton() {
     <button
       className={`${styles.scrollToTopButton} ${showButton ? styles.show : ''}`}
       onClick={scrollToTop}
+      aria-label='Scroll to top of the page'
     >
       <svg
         width='24'

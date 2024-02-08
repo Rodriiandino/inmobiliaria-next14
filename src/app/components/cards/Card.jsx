@@ -132,8 +132,10 @@ export default function Card({ propiedades }) {
       </div>
       <footer className={styles.card__footer}>
         <Link href={`/inmobiliaria/${id}`}> Ver mas</Link>
-        <dt className={styles.card__dt}>Precio</dt>
-        <dd className={styles.card__price}>{precio}</dd>
+        <dl>
+          <dt className={styles.card__dt}>Precio</dt>
+          <dd className={styles.card__price}>{precio}</dd>
+        </dl>
       </footer>
     </article>
   )

@@ -10,7 +10,11 @@ export default function WhatsAppButton() {
   }
 
   return (
-    <button className={styles.whatsappButton} onClick={openWhatsAppChat}>
+    <button
+      className={styles.whatsappButton}
+      onClick={openWhatsAppChat}
+      aria-label='Open WhatsApp chat'
+    >
       <svg
         width='24'
         height='24'
