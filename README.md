@@ -26,7 +26,7 @@ Este proyecto fue realizado con Next14, MySQL, y usando los API Router de next.j
 3. Ejecuta el archivo db.sql para la creacion de la base de datos, esta se encuentra en src/db/db.sql
 4. Ejecuta `npm install` para instalar las dependencias.
 5. Ejecuta `npm run dev` para iniciar la aplicación en modo de desarrollo.
-6. Abre tu navegador y visita el localhost, en el puerto en que se abrio.
+6. Abre tu navegador y visita el localhost, en el puerto en que se levanto.
 7. Puedes visitar los endpont de la api en localhost:tupuerto/api/inmobiliarias o localhost:tupuerto/api/inmobiliarias/id
 
 ![image](https://github.com/Rodriiandino/inmobiliaria-next14/assets/106351323/22210d72-495b-43e2-804e-483562d2e940)
